@@ -32,13 +32,46 @@
 
         <!--research paper page-->
         <div class="paper-container" id="id-paper-container">
-            <button id="paper-adder" class="button-base">
+            <button popovertarget="id-pcc" id="paper-adder" class="button-base">
                 Add Paper
             </button>
 
             <p class="suggested-text">
                 Start adding papers! Click the add button to begin
             </p>
+
+            <div popover="manual" class="paper-creator-container" id="id-pcc">
+                <div id="paper-details">
+                    <h3>
+                        Title:
+                    </h3>
+
+                    <input class="input-field" id="paper-title" placeholder="Studies on Research Papers">
+
+                    <h3> 
+                        Author:
+                    </h3>
+
+                    <input class="input-field" id="paper-auth" placeholder="John Doe">
+
+                    <h3>
+                        Other:
+                    </h3>
+
+                    <input class="input-field" id="paper-other" placeholder="Other contributors or interesting information">
+
+                </div>
+
+                <div class="nav-container">
+                    <button class="button-base" id="add-button">
+                        Add
+                    </button>
+
+                    <button class="button-base" id="cancel-button">
+                        Cancel
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
