@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RePaper Html</title>
     <link rel="stylesheet" href="popup.css">
+    <script src="content.js" defer></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,16 +20,27 @@
         </h1>
         
         <div class="nav-container">
-            <button id="papers-button">
+            <button id="papers-button" class="button-base">
                 Papers
             </button>
 
-            <button id="notes-button">
+            <button id="notes-button" class="button-base">
                 Notes
             </button>
         </div>
+
+
+        <!--research paper page-->
+        <div class="paper-container" id="id-paper-container">
+            <button id="paper-adder" class="button-base">
+                Add Paper
+            </button>
+
+            <p class="suggested-text">
+                Start adding papers! Click the add button to begin
+            </p>
+        </div>
     </div>
 
-    <!--research paper page-->
 </body>
 </html>
