@@ -83,6 +83,35 @@
     height: 450px;
 }
 
+.po-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #d4d4d4;
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 9px;
+    padding-left: 10px;
+    margin: 10px;
+    border-radius: 4px;
+    border: 2px solid #000000;
+    cursor: pointer;
+}
+
+.trash-auth-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 7px;
+}
+
+.fa-trash {
+    color: #000000;
+}
+
+.fa-trash:hover {
+    color: #ff3131;
+}
+
 .input-field {
     font-family: 'Lexend Mega', sans-serif;
     font-size: 15px;
