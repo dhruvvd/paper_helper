@@ -15,7 +15,7 @@ cancelBtn.addEventListener('click', () => {
 
 const addBtn = document.getElementById('add-button');
 
-addBtn.addEventListener('click', () => {
+addBtn.addEventListener('click', async () => {
 
     const titleE = document.getElementById('paper-title');
     const authorE = document.getElementById('paper-auth');
@@ -47,7 +47,7 @@ addBtn.addEventListener('click', () => {
         if (otherInfoE) otherInfoE.value = '';
     }
 
-    savePaper();
+    await savePaper();
     */
 
     const rePaperDiv = document.createElement('div');
@@ -63,6 +63,7 @@ addBtn.addEventListener('click', () => {
     rePaperAuthor.textContent = paper.author;
 
     rePaperDiv.classList.add('po-container');
+    rePaperDiv.setAttribute("id", paper.id);
     bottomCont.classList.add('trash-auth-container');
     trash.classList.add('fa-solid');
     trash.classList.add('fa-trash');
@@ -77,18 +78,34 @@ addBtn.addEventListener('click', () => {
     container.insertBefore(rePaperDiv, popOverBtn);
 });
 
-const deleteContainer = document.getElementByClasss('po-container');
-
-deleteContainer.addEventListener('click', (event) => {
+repaperPage.addEventListener('click', async (event) => {
     const clickedElement = event.target;
-    const trashID = clickedElement.id;
-})
+    const elementID = clickedElement.id;
+    const identifier = elementID.substring(0, 5);
 
-deletePaper.addEventListener('click', () => {
-    async function removePaper() {
-        const result = await chrome.storage.local.get('papers');
-        const paperCollection = result.papers || [];
+    if (identifier === 'trash') {
+        const trashID = elementID;
+        const trashNum = Number(trashID.substring(9));
 
-    }
+        async function deletePaper() {
+            try {
+                const result = await chrome.storage.local.get('papers');
+                const paperCollection = result.papers || [];
+
+                const updatedPapers = paperCollection.filter(paper => paper.id !== trashNum);
+                await chrome.storage.local.set({ papers: updatedPapers});
+            } catch (error) {
+                throw error;
+            };
+        }
+        
+        const container = document.getElementById('id-paper-container');
+        const paperContainer = document.getElementById(trashNum);
+        try {
+            await deletePaper();
+            container.removeChild(paperContainer);
+        } catch (error) {
+            console.error("Failed to complete paper deletion:", error);
+        };
+    };
 });
-
