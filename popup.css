@@ -83,6 +83,26 @@
     background-color: #ff6d4d;
 }
 
+#note-adder {
+    background-color: #ff6d4d;
+}
+
+#paper-ab {
+    background-color:#6B93B8;
+}
+
+#paper-cb {
+    background-color: #C0C0C0;
+}
+
+#notes-ab {
+    background-color: #6B93B8;
+}
+
+#notes-cb {
+    background-color: #C0C0C0;
+}
+
 #id-pcc:popover-open {
     display: flex;
     flex-direction: column;
