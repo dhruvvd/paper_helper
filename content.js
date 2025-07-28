@@ -1,21 +1,35 @@
-const paperBtnClick = document.getElementById('papers-button');
+const paperBtn = document.getElementById('papers-button');
+const notesBtn = document.getElementById('notes-button');
 const repaperPage = document.getElementById('id-paper-container');
+const notesPage =document.getElementById('id-notes-container');
 
-paperBtnClick.addEventListener('click', () => {
+paperBtn.addEventListener('click', () => {
     repaperPage.style.display = 'flex';
+    notesPage.style.display = 'none';
 });
 
-const cancelBtn = document.getElementById('cancel-button');
-const paperPopover = document.getElementById('id-pcc');
+notesBtn.addEventListener('click', () => {
+    notesPage.style.display = 'flex';
+    repaperPage.style.display = 'none';
+});
 
-cancelBtn.addEventListener('click', () => {
+const cancelPaperBtn = document.getElementById('paper-cb');
+const cancelNoteBtn = document.getElementById('notes-cb');
+const paperPopover = document.getElementById('id-pcc');
+const notePopover = document.getElementById('id-ncc');
+
+cancelPaperBtn.addEventListener('click', () => {
     paperPopover.hidePopover();
 });
 
+cancelNoteBtn.addEventListener('click', () => {
+    notePopover.hidePopover();
+});
 
-const addBtn = document.getElementById('add-button');
 
-addBtn.addEventListener('click', async () => {
+const addPaperBtn = document.getElementById('paper-ab');
+
+addPaperBtn.addEventListener('click', async () => {
 
     const titleE = document.getElementById('paper-title');
     const authorE = document.getElementById('paper-auth');
