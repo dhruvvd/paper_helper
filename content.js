@@ -123,3 +123,15 @@ repaperPage.addEventListener('click', async (event) => {
         };
     };
 });
+
+const addNoteBtn = document.getElementById('notes-ab');
+
+addNoteBtn.addEventListener('click', async () => {
+    const noteName = document.getElementById('note-title');
+    const noteContent = document.getElementById('note-content');
+
+    const name = noteName ? noteName.value: '';
+    const content = noteContent ? noteContent.value: '';
+
+    
+})
