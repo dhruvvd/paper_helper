@@ -63,11 +63,41 @@
                 </div>
 
                 <div class="nav-container">
-                    <button class="button-base" id="add-button">
+                    <button class="button-base" id="paper-ab">
                         Add
                     </button>
 
-                    <button class="button-base" id="cancel-button">
+                    <button class="button-base" id="paper-cb">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!--Notes area-->
+
+        <div class="notes-container" id="id-notes-container">
+            <button popovertarget="id-ncc" id="note-adder" class="button-base">
+                Add Note
+            </button>
+
+            <p class="suggested-text">
+                Start adding notes! Click the add button to begin
+            </p>
+
+            <div popover="manual" class="note-creator-container" id="id-ncc">
+                <div id="note-details">
+                    <input placeholder="Insert Note name" id='note-title' class="input-field">
+
+                    <textarea id="note-content" rows="14" cols="25"></textarea>
+                </div>
+
+                <div class="nav-container">
+                    <button class="button-base" id="notes-ab">
+                        Add
+                    </button>
+
+                    <button class="button-base" id="notes-cb">
                         Cancel
                     </button>
                 </div>
