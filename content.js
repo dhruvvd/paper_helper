@@ -41,10 +41,6 @@ addBtn.addEventListener('click', async () => {
         paperCollection.push(paper);
 
         await chrome.storage.local.set({ papers: paperCollection});
-
-        if (titleE) titleE.value = '';
-        if (authorE) authorE.value = '';
-        if (otherInfoE) otherInfoE.value = '';
     }
 
     await savePaper();
@@ -76,6 +72,10 @@ addBtn.addEventListener('click', async () => {
     rePaperDiv.appendChild(bottomCont);
 
     container.insertBefore(rePaperDiv, popOverBtn);
+
+    if (titleE) titleE.value = '';
+    if (authorE) authorE.value = '';
+    if (otherInfoE) otherInfoE.value = '';
 });
 
 repaperPage.addEventListener('click', async (event) => {
@@ -86,7 +86,7 @@ repaperPage.addEventListener('click', async (event) => {
     if (identifier === 'trash') {
         const trashID = elementID;
         const trashNum = Number(trashID.substring(9));
-
+        /*
         async function deletePaper() {
             try {
                 const result = await chrome.storage.local.get('papers');
@@ -98,11 +98,11 @@ repaperPage.addEventListener('click', async (event) => {
                 throw error;
             };
         }
-        
+        */
         const container = document.getElementById('id-paper-container');
         const paperContainer = document.getElementById(trashNum);
         try {
-            await deletePaper();
+            //await deletePaper();
             container.removeChild(paperContainer);
         } catch (error) {
             console.error("Failed to complete paper deletion:", error);
