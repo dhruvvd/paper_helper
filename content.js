@@ -1,7 +1,7 @@
 const paperBtn = document.getElementById('papers-button');
 const notesBtn = document.getElementById('notes-button');
 const repaperPage = document.getElementById('id-paper-container');
-const notesPage =document.getElementById('id-notes-container');
+const notesPage = document.getElementById('id-notes-container');
 
 paperBtn.addEventListener('click', () => {
     repaperPage.style.display = 'flex';
@@ -133,5 +133,82 @@ addNoteBtn.addEventListener('click', async () => {
     const name = noteName ? noteName.value: '';
     const content = noteContent ? noteContent.value: '';
 
-    
+    const note = {
+        id: Math.random(),
+        name: name,
+        content: content
+    }
+
+    /*
+    async function saveNote() {
+
+        const result = await chrome.storage.local.get('notes');
+        const noteCollection = result.notes || [];
+
+        noteCollection.push(note);
+
+        await chrome.storage.local.set({ notes: noteCollection});
+    }
+
+    await savePaper();
+    */
+
+    const noteDiv = document.createElement('div');
+    const noteNameEle = document.createElement('h1');
+    const trashCont = document.createElement('div');
+    const trash = document.createElement('i');
+
+    const popOverBtn = document.getElementById('note-adder');
+    const container = document.getElementById('id-notes-container');
+
+    noteNameEle.textContent = note.name;
+
+    noteDiv.classList.add('no-container');
+    noteDiv.setAttribute("id", note.id);
+    trashCont.classList.add('trash-note-container');
+    trash.classList.add('fa-solid');
+    trash.classList.add('fa-trash');
+    trash.classList.add('fa-2xl');
+    trash.setAttribute("id", "trash-id-" + note.id);
+
+    noteDiv.appendChild(noteNameEle);
+    noteDiv.appendChild(trashCont);
+    trashCont.appendChild(trash);
+
+    container.insertBefore(noteDiv, popOverBtn);
+
+    if (noteName) noteName.value = '';
+    if (noteContent) noteContent.value = '';
+})
+
+notesPage.addEventListener('click', async (event) => {
+    const clickedElement = event.target;
+    const elementID = clickedElement.id;
+    const identifier = elementID.substring(0, 5);
+
+    if (identifier === 'trash') {
+        const trashID = elementID;
+        const trashNum = Number(trashID.substring(9));
+        /*
+        async function deleteNote() {
+            try {
+                const result = await chrome.storage.local.get('notes');
+                const pnoteCollection = result.notes || [];
+
+                const updatedNotes = noteCollection.filter(note => note.id !== trashNum);
+                await chrome.storage.local.set({ notes: updatedNotes});
+            } catch (error) {
+                throw error;
+            };
+        }
+        */
+        const container = document.getElementById('id-notes-container');
+        const noteContainer = document.getElementById(trashNum);
+        try {
+            //await deleteNote();
+            container.removeChild(noteContainer);
+        } catch (error) {
+            console.error("Failed to complete note deletion:", error);
+        };
+    };
 })
