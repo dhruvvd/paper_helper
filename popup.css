@@ -42,6 +42,58 @@
     height: 400px;
 }
 
+.pass-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FFF2E0;
+    border-radius: 4px;
+    border: 2px solid #000000;
+    width: 350px;
+    height: 450px;
+}
+
+.pass-object {
+    display: flex;
+    align-items: center;
+    background-color: #d4d4d4;
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 15px;
+    padding-left: 10px;
+    margin: 10px;
+    border-radius: 4px;
+    border: 2px solid #000000;
+    height: 65px;
+    cursor: pointer;
+}
+
+#paper-details {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+
+#paperTitle {
+    margin: 5px;
+    font-family: 'Lexend Mega', sans-serif;
+}
+
+#id-aoi {
+    margin: 5px;
+    margin-bottom: 15px;
+}
+
+.pass-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    background: #ffffff;
+    border-radius: 4px;
+    border: 2px solid #000000;
+    width: 300px;
+    height: 350px;
+}
+
 .suggested-text {
     display: flex;
     align-self: center;
@@ -84,6 +136,10 @@
 }
 
 #note-adder {
+    background-color: #ff6d4d;
+}
+
+#pass-submit {
     background-color: #ff6d4d;
 }
 
