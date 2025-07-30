@@ -73,7 +73,7 @@ addPaperBtn.addEventListener('click', async () => {
     rePaperAuthor.textContent = paper.author;
 
     rePaperDiv.classList.add('po-container');
-    rePaperDiv.setAttribute("id", paper.id);
+    rePaperDiv.setAttribute("id", "po-id-" + paper.id);
     bottomCont.classList.add('trash-auth-container');
     trash.classList.add('fa-solid');
     trash.classList.add('fa-trash');
@@ -114,13 +114,26 @@ repaperPage.addEventListener('click', async (event) => {
         }
         */
         const container = document.getElementById('id-paper-container');
-        const paperContainer = document.getElementById(trashNum);
+        const paperContainer = document.getElementById("po-id-" + trashNum);
         try {
             //await deletePaper();
             container.removeChild(paperContainer);
         } catch (error) {
             console.error("Failed to complete paper deletion:", error);
         };
+    };
+});
+
+repaperPage.addEventListener('click', async (event) => {
+    const clickedElement = event.target;
+    const elementID = clickedElement.id;
+    const identifier = elementID.substring(0, 2);
+
+    if (identifier === 'po' || identifier === 'tr') {
+        //change container color
+
+        //redirect to a new page
+        chrome.browserAction.setPopup({ popup: 'passes.html' });
     };
 });
 
