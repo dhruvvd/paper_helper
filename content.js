@@ -28,6 +28,10 @@ cancelNoteBtn.addEventListener('click', () => {
 
 
 const addPaperBtn = document.getElementById('paper-ab');
+const modal = document.querySelector('[data-modal]');
+const submitPass = document.getElementById('pass-submit');
+
+let isHovered = false;
 
 addPaperBtn.addEventListener('click', async () => {
 
@@ -74,11 +78,13 @@ addPaperBtn.addEventListener('click', async () => {
 
     rePaperDiv.classList.add('po-container');
     rePaperDiv.setAttribute("id", "po-id-" + paper.id);
+    rePaperTitle.setAttribute('id', 'repaperTitle-' + paper.id);
     bottomCont.classList.add('trash-auth-container');
+    bottomCont.setAttribute('id', 'trash-auco-id');
     trash.classList.add('fa-solid');
     trash.classList.add('fa-trash');
     trash.classList.add('fa-2xl');
-    trash.setAttribute("id", "trash-id-" + paper.id);
+    trash.setAttribute("id", "id-trash-" + paper.id);
 
     rePaperDiv.appendChild(rePaperTitle);
     bottomCont.appendChild(rePaperAuthor);
@@ -97,7 +103,7 @@ repaperPage.addEventListener('click', async (event) => {
     const elementID = clickedElement.id;
     const identifier = elementID.substring(0, 5);
 
-    if (identifier === 'trash') {
+    if (identifier === 'id-tr') {
         const trashID = elementID;
         const trashNum = Number(trashID.substring(9));
         /*
@@ -124,17 +130,26 @@ repaperPage.addEventListener('click', async (event) => {
     };
 });
 
-repaperPage.addEventListener('click', async (event) => {
+repaperPage.addEventListener('mouseover', (event) => {
+    const hoveredElement = event.target;
+    const elementID = hoveredElement.id;
+    const identifier = elementID.substring(0, 5);
+
+    isHovered = identifier === 'trash' || identifier === 'repap';
+});
+
+repaperPage.addEventListener('click', (event) => {
     const clickedElement = event.target;
     const elementID = clickedElement.id;
-    const identifier = elementID.substring(0, 2);
+    const identifier = elementID.substring(0, 5);
 
-    if (identifier === 'po' || identifier === 'tr') {
-        //change container color
+    if (identifier === 'trash' || identifier === 'repap') {
+        modal.show();
+    }
+});
 
-        //redirect to a new page
-        chrome.browserAction.setPopup({ popup: 'passes.html' });
-    };
+submitPass.addEventListener('click', () => {
+    modal.close();
 });
 
 const addNoteBtn = document.getElementById('notes-ab');
