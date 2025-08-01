@@ -256,6 +256,10 @@ dialog:open {
     border-radius: 4px; 
 }
 
-h3 {
+h3, h2 {
     font-family: 'Lexend Mega', sans-serif;
+}
+
+h2 {
+    margin: 10px;
 }
