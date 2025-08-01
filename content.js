@@ -15,8 +15,15 @@ notesBtn.addEventListener('click', () => {
 
 const cancelPaperBtn = document.getElementById('paper-cb');
 const cancelNoteBtn = document.getElementById('notes-cb');
+const closeFp = document.getElementById('fp-cb');
+const closeSp = document.getElementById('sp-cb');
+const closeTp = document.getElementById('tp-cb');
+
 const paperPopover = document.getElementById('id-pcc');
 const notePopover = document.getElementById('id-ncc');
+const fpPopover = document.getElementById('fp-details');
+const spPopover = document.getElementById('sp-details');
+const tpPopover = document.getElementById('tp-details');
 
 cancelPaperBtn.addEventListener('click', () => {
     paperPopover.hidePopover();
@@ -24,6 +31,18 @@ cancelPaperBtn.addEventListener('click', () => {
 
 cancelNoteBtn.addEventListener('click', () => {
     notePopover.hidePopover();
+});
+
+closeFp.addEventListener('click', () => {
+    fpPopover.hidePopover();
+});
+
+closeSp.addEventListener('click', () => {
+    spPopover.hidePopover();
+}); 
+
+closeTp.addEventListener('click', () => {
+    tpPopover.hidePopover();
 });
 
 
@@ -47,7 +66,10 @@ addPaperBtn.addEventListener('click', async () => {
         id: Math.random(),
         title: title,
         author: author,
-        other: otherInfo
+        other: otherInfo,
+        fpData: '',
+        spData: '',
+        tpData: ''
     };
 
     /*
@@ -240,3 +262,21 @@ notesPage.addEventListener('click', async (event) => {
         };
     };
 })
+
+const fpSaveBtn = document.getElementById('fp-sb');
+const spSaveBtn = document.getElementById('sp-sb');
+const tpSaveBtn = document.getElementById('tp-sb');
+
+fpSaveBtn.addEventListener('click', async () => {
+    const fpContentEle = document.getElementById('fp-content');
+    const fpContent = fpContentEle ? fpContentEle.value : '';
+
+    async function saveFpContent() {
+        const result = await chrome.storage.local.get('papers');
+        const paperCollection = result.papers || [];
+
+
+    }
+
+    await saveFpContent();
+});
