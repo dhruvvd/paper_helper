@@ -160,12 +160,13 @@ repaperPage.addEventListener('mouseover', (event) => {
     isHovered = identifier === 'trash' || identifier === 'repap';
 });
 
-repaperPage.addEventListener('click', (event) => {
+repaperPage.addEventListener('click', async (event) => {
     const clickedElement = event.target;
     const elementID = clickedElement.id;
     const identifier = elementID.substring(0, 5);
 
     if (identifier === 'trash' || identifier === 'repap') {
+        const paperID = identifier === 'repap' ? Number(elementID.substring(13)) : elementID.substring(13);
         modal.show();
     }
 });
@@ -267,16 +268,117 @@ const fpSaveBtn = document.getElementById('fp-sb');
 const spSaveBtn = document.getElementById('sp-sb');
 const tpSaveBtn = document.getElementById('tp-sb');
 
+const fpObject = document.getElementById('first-po');
+const spObject = document.getElementById('second-po');
+const tpObject = document.getElementById('third-po');
+
+fpObject.addEventListener('click', async () => {
+    const result = await chrome.storage.local.get('papers');
+    const paperCollection = result.papers || [];
+
+    const paperTitle = document.getElementById('paperTitle').value;
+    const paper = paperCollection.find(p => p.title === paperTitle);   
+
+    const fpContentEle = document.getElementById('fp-content');
+    const fpContent = fpContentEle ? fpContentEle.value : '';
+
+    if (paper) {
+        fpContentEle.value = paper.fpData || '';
+    };
+});
+
+spObject.addEventListener('click', async () => {
+    const result = await chrome.storage.local.get('papers');
+    const paperCollection = result.papers || [];
+
+    const paperTitle = document.getElementById('paperTitle').value;
+    const paper = paperCollection.find(p => p.title === paperTitle);   
+
+    const spContentEle = document.getElementById('sp-content');
+    const spContent = spContentEle ? spContentEle.value : '';
+
+    if (paper) {
+        spContentEle.value = paper.spData || '';
+    };
+});
+
+tpObject.addEventListener('click', async () => {
+    const result = await chrome.storage.local.get('papers');
+    const paperCollection = result.papers || [];
+
+    const paperTitle = document.getElementById('paperTitle').value; 
+    const paper = paperCollection.find(p => p.title === paperTitle);    
+
+    const tpContentEle = document.getElementById('tp-content');
+    const tpContent = tpContentEle ? tpContentEle.value : '';
+
+    if (paper) {
+        tpContentEle.value = paper.tpData || '';
+    };
+});
+
 fpSaveBtn.addEventListener('click', async () => {
     const fpContentEle = document.getElementById('fp-content');
     const fpContent = fpContentEle ? fpContentEle.value : '';
+
+    const paperTitle = document.getElementById('paperTitle').value;
+    const paper = paperCollection.find(p => p.title === paperTitle);
 
     async function saveFpContent() {
         const result = await chrome.storage.local.get('papers');
         const paperCollection = result.papers || [];
 
-
+        if (paper) {
+            paper.fpData = fpContent;
+            await chrome.storage.local.set({ papers: paperCollection });
+        } else {
+            console.error("Paper not found for saving first pass content.");
+        };
     }
 
-    await saveFpContent();
+    //await saveFpContent();
+});
+
+spSaveBtn.addEventListener('click', async () => {
+    const spContentEle = document.getElementById('sp-content');
+    const spContent = spContentEle ? spContentEle.value : ''; 
+
+    const paperTitle = document.getElementById('paperTitle').value;
+    const paper = paperCollection.find(p => p.title === paperTitle);
+
+    async function saveSpContent() {
+        const result = await chrome.storage.local.get('papers');
+        const paperCollection = result.papers || [];
+
+        if (paper) {
+            paper.spData = spContent;
+            await chrome.storage.local.set({ papers: paperCollection });
+        } else {
+            console.error("Paper not found for saving second pass content.");
+        };
+    }
+
+    //await saveSpContent();
+});
+
+tpSaveBtn.addEventListener('click', async () => {
+    const tpContentEle = document.getElementById('tp-content');
+    const tpContent = tpContentEle ? tpContentEle.value : '';
+
+    const paperTitle = document.getElementById('paperTitle').value;
+    const paper = paperCollection.find(p => p.title === paperTitle);
+
+    async function saveTpContent() {
+        const result = await chrome.storage.local.get('papers');
+        const paperCollection = result.papers || [];
+
+        if (paper) {
+            paper.tpData = tpContent;
+            await chrome.storage.local.set({ papers: paperCollection });
+        } else {
+            console.error("Paper not found for saving third pass content.");
+        };
+    }
+
+    //await saveTpContent();
 });
