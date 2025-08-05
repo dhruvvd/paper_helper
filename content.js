@@ -184,6 +184,81 @@ repaperPage.addEventListener('click', async (event) => {
     }
 });
 
+notesPage.addEventListener('click', async (event) => {
+    const clickedElement = event.target;
+    const elementID = clickedElement.id;
+    const identifier = elementID.substring(0, 5);
+
+    if (identifier === "no-id") {
+        const noteID = Number(elementID.substring(6));
+        /*
+        async function getNote() {
+            const result = await chrome.storage.local.get('notes');
+            const noteCollection = result.notes || [];
+
+            return noteCollection.find(n => n.id === noteID);
+        }
+
+        const note = await getNote();
+        const noteNameEle = document.getElementById('note-title');
+        const noteContentEle = document.getElementById('note-content');
+
+        if (note) {
+            noteNameEle.value = note.name;
+            noteContentEle.value = note.content;
+        }
+        */
+        notePopover.showPopover();
+    }
+});
+
+const saveNoteBtn = document.getElementById('notes-sb');
+
+saveNoteBtn.addEventListener('click', async () => {
+    const noteNameEle = document.getElementById('note-title');  
+    const noteContentEle = document.getElementById('note-content');
+
+    const noteName = noteNameEle ? noteNameEle.value : '';
+    const noteContent = noteContentEle ? noteContentEle.value : '';
+
+    const result = await chrome.storage.local.get('notes');
+    const noteCollection = result.notes || [];
+
+    
+});
+
+notesPage.addEventListener('click', (event) => {
+    const clickedElement = event.target;
+    const elementID = clickedElement.id;
+    const identifier = elementID.substring(0, 5);
+
+    if (identifier === 'trash') {
+        const trashID = elementID;
+        const trashNum = Number(trashID.substring(9));
+        /*
+        async function deleteNote() {
+            try {
+                const result = await chrome.storage.local.get('notes');
+                const noteCollection = result.notes || [];
+
+                const updatedNotes = noteCollection.filter(note => note.id !== trashNum);
+                await chrome.storage.local.set({ notes: updatedNotes});
+            } catch (error) {
+                throw error;
+            };
+        }
+        */
+        const container = document.getElementById('id-notes-container');
+        const noteContainer = document.getElementById("no-id-" + trashNum);
+        try {
+            //await deleteNote();
+            container.removeChild(noteContainer);
+        } catch (error) {
+            console.error("Failed to complete note deletion:", error);
+        };
+    }
+});
+
 submitPass.addEventListener('click', () => {
     modal.close();
 });
@@ -228,7 +303,7 @@ addNoteBtn.addEventListener('click', async () => {
     noteNameEle.textContent = note.name;
 
     noteDiv.classList.add('no-container');
-    noteDiv.setAttribute("id", note.id);
+    noteDiv.setAttribute("id", "no-id-" + note.id);
     trashCont.classList.add('trash-note-container');
     trash.classList.add('fa-solid');
     trash.classList.add('fa-trash');
