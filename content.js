@@ -102,7 +102,7 @@ addPaperBtn.addEventListener('click', async () => {
     rePaperDiv.setAttribute("id", "po-id-" + paper.id);
     rePaperTitle.setAttribute('id', 'repaperTitle-' + paper.id);
     bottomCont.classList.add('trash-auth-container');
-    bottomCont.setAttribute('id', 'trash-auco-id');
+    bottomCont.setAttribute('id', 'trash-auco-id-' + paper.id);
     trash.classList.add('fa-solid');
     trash.classList.add('fa-trash');
     trash.classList.add('fa-2xl');
@@ -165,8 +165,21 @@ repaperPage.addEventListener('click', async (event) => {
     const elementID = clickedElement.id;
     const identifier = elementID.substring(0, 5);
 
+    const paperTitleEle = document.getElementById('paperTitle');
+    const paperAOIEle = document.getElementById('id-aoi');
+
     if (identifier === 'trash' || identifier === 'repap') {
-        const paperID = identifier === 'repap' ? Number(elementID.substring(13)) : elementID.substring(13);
+        /*
+        const paperID = identifier === 'repap' ? Number(elementID.substring(13)) : Number(elementID.substring(14));
+        
+        const result = await chrome.storage.local.get('papers');
+        const paperCollection = result.papers || [];
+
+        const paper = paperCollection.find(p => p.id == paperID);
+
+        paperTitleEle.value = paper ? paper.title : '';
+        paperAOIEle.value = paper ? paper.author + ", " + paper.other : '';
+        */
         modal.show();
     }
 });
