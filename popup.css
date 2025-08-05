@@ -201,6 +201,10 @@ dialog:open {
     background-color: #bbbbbb;
 }
 
+.no-container:hover {
+    background-color: #bbbbbb;
+}
+
 .no-container {
     display: flex;
     flex-direction: row;
