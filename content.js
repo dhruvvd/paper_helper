@@ -78,19 +78,22 @@ addPaperBtn.addEventListener('click', async () => {
         tpData: ''
     };
 
-    /*
-    async function savePaper() {
+    
+    async function savePaper(paperObject) {
 
         const result = await chrome.storage.local.get('papers');
         const paperCollection = result.papers || [];
 
-        paperCollection.push(paper);
+        paperCollection.push(paperObject);
 
         await chrome.storage.local.set({ papers: paperCollection});
     }
 
-    await savePaper();
-    */
+    try {
+        await savePaper(paper);
+    } catch (error) {
+        console.error("Failed to save paper:", error);
+    }
 
     const rePaperDiv = document.createElement('div');
     const bottomCont = document.createElement('div');
@@ -134,23 +137,23 @@ repaperPage.addEventListener('click', async (event) => {
     if (identifier === 'id-tr') {
         const trashID = elementID;
         const trashNum = Number(trashID.substring(9));
-        /*
-        async function deletePaper() {
+        
+        async function deletePaper(trashVal) {
             try {
                 const result = await chrome.storage.local.get('papers');
                 const paperCollection = result.papers || [];
 
-                const updatedPapers = paperCollection.filter(paper => paper.id !== trashNum);
+                const updatedPapers = paperCollection.filter(paper => paper.id !== trashVal);
                 await chrome.storage.local.set({ papers: updatedPapers});
             } catch (error) {
                 throw error;
             };
         }
-        */
+        
         const container = document.getElementById('id-paper-container');
         const paperContainer = document.getElementById("po-id-" + trashNum);
         try {
-            //await deletePaper();
+            await deletePaper(trashNum);
             container.removeChild(paperContainer);
         } catch (error) {
             console.error("Failed to complete paper deletion:", error);
@@ -175,7 +178,7 @@ repaperPage.addEventListener('click', async (event) => {
     const paperAOIEle = document.getElementById('id-aoi');
 
     if (identifier === 'trash' || identifier === 'repap') {
-        /*
+        
         const paperID = identifier === 'repap' ? Number(elementID.substring(13)) : Number(elementID.substring(14));
         
         const result = await chrome.storage.local.get('papers');
@@ -185,7 +188,7 @@ repaperPage.addEventListener('click', async (event) => {
 
         paperTitleEle.value = paper ? paper.title : '';
         paperAOIEle.value = paper ? paper.author + ", " + paper.other : '';
-        */
+        
         modal.show();
     }
 });
@@ -197,15 +200,15 @@ notesPage.addEventListener('click', async (event) => {
 
     if (identifier === "no-id") {
         const noteID = Number(elementID.substring(6));
-        /*
-        async function getNote() {
+        
+        async function getNote(noteVal) {
             const result = await chrome.storage.local.get('notes');
             const noteCollection = result.notes || [];
 
-            return noteCollection.find(n => n.id === noteID);
+            return noteCollection.find(n => n.id === noteVal);
         }
 
-        const note = await getNote();
+        const note = await getNote(noteID);
         const noteNameEle = document.getElementById('note-title');
         const noteContentEle = document.getElementById('note-content');
 
@@ -213,7 +216,7 @@ notesPage.addEventListener('click', async (event) => {
             noteNameEle.value = note.name;
             noteContentEle.value = note.content;
         }
-        */
+        
         notePopover.showPopover();
     }
 });
@@ -235,11 +238,15 @@ saveNoteBtn.addEventListener('click', async () => {
     if (note) {
         note.content = noteContent;
 
-        await chrome.storage.local.set({ notes: noteCollection });
+        try {
+            await chrome.storage.local.set({ notes: noteCollection });
+        } catch (error) {
+            console.error("Failed to save note:", error);
+        }
     };
 });
 
-notesPage.addEventListener('click', (event) => {
+notesPage.addEventListener('click', async (event) => {
     const clickedElement = event.target;
     const elementID = clickedElement.id;
     const identifier = elementID.substring(0, 5);
@@ -247,23 +254,23 @@ notesPage.addEventListener('click', (event) => {
     if (identifier === 'trash') {
         const trashID = elementID;
         const trashNum = Number(trashID.substring(9));
-        /*
-        async function deleteNote() {
+        
+        async function deleteNote(trashVal) {
             try {
                 const result = await chrome.storage.local.get('notes');
                 const noteCollection = result.notes || [];
 
-                const updatedNotes = noteCollection.filter(note => note.id !== trashNum);
+                const updatedNotes = noteCollection.filter(note => note.id !== trashVal);
                 await chrome.storage.local.set({ notes: updatedNotes});
             } catch (error) {
                 throw error;
             };
         }
-        */
+        
         const container = document.getElementById('id-notes-container');
         const noteContainer = document.getElementById("no-id-" + trashNum);
         try {
-            //await deleteNote();
+            await deleteNote(trashNum);
             container.removeChild(noteContainer);
         } catch (error) {
             console.error("Failed to complete note deletion:", error);
@@ -290,19 +297,22 @@ addNoteBtn.addEventListener('click', async () => {
         content: content
     }
 
-    /*
-    async function saveNote() {
+    
+    async function saveNote(noteObject) {
 
         const result = await chrome.storage.local.get('notes');
         const noteCollection = result.notes || [];
 
-        noteCollection.push(note);
+        noteCollection.push(noteObject);
 
         await chrome.storage.local.set({ notes: noteCollection});
     }
 
-    await saveNote();
-    */
+    try {
+         saveNote(note);
+    } catch (error) {
+        console.error("Failed to save note:", error);
+    }
 
     const noteDiv = document.createElement('div');
     const noteNameEle = document.createElement('h1');
@@ -348,7 +358,6 @@ fpObject.addEventListener('click', async () => {
     const paper = paperCollection.find(p => p.title === paperTitle);   
 
     const fpContentEle = document.getElementById('fp-content');
-    const fpContent = fpContentEle ? fpContentEle.value : '';
 
     if (paper) {
         fpContentEle.value = paper.fpData || '';
@@ -363,7 +372,6 @@ spObject.addEventListener('click', async () => {
     const paper = paperCollection.find(p => p.title === paperTitle);   
 
     const spContentEle = document.getElementById('sp-content');
-    const spContent = spContentEle ? spContentEle.value : '';
 
     if (paper) {
         spContentEle.value = paper.spData || '';
@@ -378,7 +386,6 @@ tpObject.addEventListener('click', async () => {
     const paper = paperCollection.find(p => p.title === paperTitle);    
 
     const tpContentEle = document.getElementById('tp-content');
-    const tpContent = tpContentEle ? tpContentEle.value : '';
 
     if (paper) {
         tpContentEle.value = paper.tpData || '';
@@ -390,21 +397,25 @@ fpSaveBtn.addEventListener('click', async () => {
     const fpContent = fpContentEle ? fpContentEle.value : '';
 
     const paperTitle = document.getElementById('paperTitle').value;
-    const paper = paperCollection.find(p => p.title === paperTitle);
 
-    async function saveFpContent() {
+    async function saveFpContent(passContent, paperName) {
         const result = await chrome.storage.local.get('papers');
         const paperCollection = result.papers || [];
+        const paperObject = paperCollection.find(p => p.title === paperName);
 
-        if (paper) {
-            paper.fpData = fpContent;
+        if (paperObject) {
+            paperObject.fpData = passContent;
             await chrome.storage.local.set({ papers: paperCollection });
         } else {
             console.error("Paper not found for saving first pass content.");
         };
     }
 
-    //await saveFpContent();
+    try {
+        await saveFpContent(fpContent, paperTitle);
+    } catch (error) {
+        console.error("Failed to save first pass content:", error);
+    }
 });
 
 spSaveBtn.addEventListener('click', async () => {
@@ -412,21 +423,25 @@ spSaveBtn.addEventListener('click', async () => {
     const spContent = spContentEle ? spContentEle.value : ''; 
 
     const paperTitle = document.getElementById('paperTitle').value;
-    const paper = paperCollection.find(p => p.title === paperTitle);
 
-    async function saveSpContent() {
+    async function saveSpContent(passContent, paperName) {
         const result = await chrome.storage.local.get('papers');
         const paperCollection = result.papers || [];
+        const paperObject = paperCollection.find(p => p.title === paperName);
 
-        if (paper) {
-            paper.spData = spContent;
+        if (paperObject) {
+            paperObject.spData = passContent;
             await chrome.storage.local.set({ papers: paperCollection });
         } else {
             console.error("Paper not found for saving second pass content.");
         };
     }
 
-    //await saveSpContent();
+    try {
+        await saveSpContent(spContent, paperTitle);
+    } catch (error) {
+        console.error("Failed to save second pass content:", error);
+    }
 });
 
 tpSaveBtn.addEventListener('click', async () => {
@@ -434,19 +449,23 @@ tpSaveBtn.addEventListener('click', async () => {
     const tpContent = tpContentEle ? tpContentEle.value : '';
 
     const paperTitle = document.getElementById('paperTitle').value;
-    const paper = paperCollection.find(p => p.title === paperTitle);
 
-    async function saveTpContent() {
+    async function saveTpContent(passContent, paperName) {
         const result = await chrome.storage.local.get('papers');
         const paperCollection = result.papers || [];
+        const paperObject = paperCollection.find(p => p.title === paperName);
 
-        if (paper) {
-            paper.tpData = tpContent;
+        if (paperObject) {
+            paperObject.tpData = passContent;
             await chrome.storage.local.set({ papers: paperCollection });
         } else {
             console.error("Paper not found for saving third pass content.");
         };
     }
 
-    //await saveTpContent();
+    try {
+        await saveTpContent(tpContent, paperTitle);
+    } catch (error) {
+        console.error("Failed to save third pass content:", error);
+    }
 });
