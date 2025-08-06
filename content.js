@@ -416,6 +416,8 @@ fpSaveBtn.addEventListener('click', async () => {
     } catch (error) {
         console.error("Failed to save first pass content:", error);
     }
+
+    fpPopover.closePopover();
 });
 
 spSaveBtn.addEventListener('click', async () => {
@@ -442,6 +444,8 @@ spSaveBtn.addEventListener('click', async () => {
     } catch (error) {
         console.error("Failed to save second pass content:", error);
     }
+
+    spPopover.closePopover();
 });
 
 tpSaveBtn.addEventListener('click', async () => {
@@ -468,4 +472,6 @@ tpSaveBtn.addEventListener('click', async () => {
     } catch (error) {
         console.error("Failed to save third pass content:", error);
     }
+
+    tpPopover.closePopover();
 });
