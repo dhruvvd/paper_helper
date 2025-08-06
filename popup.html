@@ -1,210 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RePaper Html</title>
-    <link rel="stylesheet" href="popup.css">
-    <script src="content.js" defer></script>
-    <script src="https://kit.fontawesome.com/6b0e888c65.js" crossorigin="anonymous"></script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend+Mega&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <!--home page stuff-->
-    <div class="home-container">
-        <h1 class="title">
-            Paper Tracker
-        </h1>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RePaper Html</title>
+        <link rel="stylesheet" href="popup.css">
+        <script src="content.js" defer></script>
+        <script src="https://kit.fontawesome.com/6b0e888c65.js" crossorigin="anonymous"></script>
         
-        <div class="nav-container">
-            <button id="papers-button" class="button-base">
-                Papers
-            </button>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lexend+Mega&display=swap" rel="stylesheet">
+    </head>
+    <body>
 
-            <button id="notes-button" class="button-base">
-                Notes
-            </button>
-        </div>
-
-
-        <!--research paper page-->
-        <div class="paper-container scroll-obj" id="id-paper-container">
-            <button popovertarget="id-pcc" id="paper-adder" class="button-base">
-                Add Paper
-            </button>
-
-            <p class="suggested-text">
-                Start adding papers! Click the add button to begin
-            </p>
-
-            <!--pass menu-->
-
-            <dialog data-modal id="dialog-pass">
-                <div class="pass-menu" id="id-pm">
-                    <div id="paper-details">
-                        <h1 id="paperTitle">Research Title</h1>
-
-                        <h3 id="id-aoi">Author, other info</h3>
-                    </div>
-
-                    <div class="pass-container" id="id-pc">
-                        <button popovertarget="fp-details" class="button-base" id="first-po">
-                            First Pass
-                        </button>
-
-                        <div popover="manual" class="pass-pop" id="fp-details">
-                            <div>
-                                <h2>First Pass</h2>
-
-                                <textarea id="fp-content" rows="14" cols="25"></textarea>
-                            </div>
-
-                            <div class="nav-container">
-                                <button class="button-base" id="fp-sb">
-                                    Save
-                                </button>
-
-                                <button class="button-base" id="fp-cb">
-                                    Cancel
-                                </button>
-                            </div>
-                        </div>
-
-                        <button popovertarget="sp-details" class="button-base" id="second-po">
-                            Second Pass
-                        </button>
-
-                        <div popover="manual" class="pass-pop" id="sp-details">
-                            <div>
-                                <h2>Second Pass</h2>
-
-                                <textarea id="sp-content" rows="14" cols="25"></textarea>
-                            </div>
-
-                            <div class="nav-container">
-                                <button class="button-base" id="sp-sb">
-                                    Save
-                                </button>
-
-                                <button class="button-base" id="sp-cb">
-                                    Cancel
-                                </button>
-                            </div>
-                        </div>
-
-                        <button popovertarget="tp-details" class="button-base" id="third-po">
-                            Third Pass
-                        </button>
-
-                        <div popover="manual" class="pass-pop" id="tp-details">
-                            <div>
-                                <h2>Third Pass</h2>
-
-                                <textarea id="tp-content" rows="14" cols="25"></textarea>
-                            </div>
-
-                            <div class="nav-container">
-                                <button class="button-base" id="tp-sb">
-                                    Save
-                                </button>
-
-                                <button class="button-base" id="tp-cb">
-                                    Cancel
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="button-base" id="pass-submit">Done</button>
-                </div>
-            </dialog>
-
-            <div popover="manual" class="paper-creator-container" id="id-pcc">
-                <div id="paper-details">
-                    <h3>
-                        Title:
-                    </h3>
-
-                    <input class="input-field" id="paper-title" placeholder="Studies on Research Papers">
-
-                    <h3> 
-                        Author:
-                    </h3>
-
-                    <input class="input-field" id="paper-auth" placeholder="John Doe">
-
-                    <h3>
-                        Other:
-                    </h3>
-
-                    <input class="input-field" id="paper-other" placeholder="Other contributors or information">
-                </div>
-
-                <div class="nav-container">
-                    <button class="button-base" id="paper-ab">
-                        Add
-                    </button>
-
-                    <button class="button-base" id="paper-cb">
-                        Cancel
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!--Notes area-->
-
-        <div class="notes-container scroll-obj" id="id-notes-container">
-            <button popovertarget="id-ncc" id="note-adder" class="button-base">
-                Add Note
-            </button>
-
-            <p class="suggested-text">
-                Start adding notes! Click the add button to begin
-            </p>
-
-            <div popover="manual" class="note-creator-container" id="id-ncc">
-                <div id="note-create-details">
-                    <input placeholder="Insert Note name" id='note-create-title' class="input-field">
-
-                    <textarea id="note-create-content" rows="14" cols="25"></textarea>
-                </div>
-
-                <div class="nav-container">
-                    <button class="button-base" id="notes-create-ab">
-                        Add
-                    </button>
-
-                    <button class="button-base" id="notes-create-cb">
-                        Cancel
-                    </button>
-                </div>
-            </div>
+        <!--home page stuff-->
+        <div class="home-container">
+            <h1 class="title">
+                Paper Tracker
+            </h1>
             
-            <div popover="manual" class="note-container" id="id-nc">
-                <div id="note-details">
-                    <h2 id="note-title">Note Title</h2>
+            <div class="nav-container">
+                <button id="papers-button" class="button-base">
+                    Papers
+                </button>
 
-                    <textarea id="note-content" rows="14" cols="25"></textarea>
-                </div>
+                <button id="notes-button" class="button-base">
+                    Notes
+                </button>
+            </div>
 
-                <div class="nav-container">
-                    <button class="button-base" id="notes-sb">
-                        Save
-                    </button>
 
-                    <button class="button-base" id="notes-cb">
-                        Cancel
-                    </button>
+            <!--research paper page-->
+            <div class="paper-container scroll-obj" id="id-paper-container">
+                <button popovertarget="id-pcc" id="paper-adder" class="button-base">
+                    Add Paper
+                </button>
+
+                <p class="suggested-text">
+                    Start adding papers! Click the add button to begin
+                </p>
+
+                <!--pass menu-->
+
+                <dialog data-modal id="dialog-pass">
+                    <div class="pass-menu" id="id-pm">
+                        <div id="paper-details">
+                            <h1 id="paperTitle">Research Title</h1>
+
+                            <h3 id="id-aoi">Author, other info</h3>
+                        </div>
+
+                        <div class="pass-container" id="id-pc">
+                            <button popovertarget="fp-details" class="button-base" id="first-po">
+                                First Pass
+                            </button>
+
+                            <div popover="manual" class="pass-pop" id="fp-details">
+                                <div>
+                                    <h2>First Pass</h2>
+
+                                    <textarea id="fp-content" rows="14" cols="25"></textarea>
+                                </div>
+
+                                <div class="nav-container">
+                                    <button class="button-base" id="fp-sb">
+                                        Save
+                                    </button>
+
+                                    <button class="button-base" id="fp-cb">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button popovertarget="sp-details" class="button-base" id="second-po">
+                                Second Pass
+                            </button>
+
+                            <div popover="manual" class="pass-pop" id="sp-details">
+                                <div>
+                                    <h2>Second Pass</h2>
+
+                                    <textarea id="sp-content" rows="14" cols="25"></textarea>
+                                </div>
+
+                                <div class="nav-container">
+                                    <button class="button-base" id="sp-sb">
+                                        Save
+                                    </button>
+
+                                    <button class="button-base" id="sp-cb">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button popovertarget="tp-details" class="button-base" id="third-po">
+                                Third Pass
+                            </button>
+
+                            <div popover="manual" class="pass-pop" id="tp-details">
+                                <div>
+                                    <h2>Third Pass</h2>
+
+                                    <textarea id="tp-content" rows="14" cols="25"></textarea>
+                                </div>
+
+                                <div class="nav-container">
+                                    <button class="button-base" id="tp-sb">
+                                        Save
+                                    </button>
+
+                                    <button class="button-base" id="tp-cb">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="button-base" id="pass-submit">Done</button>
+                    </div>
+                </dialog>
+
+                <div popover="manual" class="paper-creator-container" id="id-pcc">
+                    <div id="paper-details">
+                        <h3>
+                            Title:
+                        </h3>
+
+                        <input class="input-field" id="paper-title" placeholder="Studies on Research Papers">
+
+                        <h3> 
+                            Author:
+                        </h3>
+
+                        <input class="input-field" id="paper-auth" placeholder="John Doe">
+
+                        <h3>
+                            Other:
+                        </h3>
+
+                        <input class="input-field" id="paper-other" placeholder="Other contributors or information">
+                    </div>
+
+                    <div class="nav-container">
+                        <button class="button-base" id="paper-ab">
+                            Add
+                        </button>
+
+                        <button class="button-base" id="paper-cb">
+                            Cancel
+                        </button>
+                    </div>
                 </div>
             </div>
 
-        </div>
-    </div>
+            <!--Notes area-->
 
-</body>
+            <div class="notes-container scroll-obj" id="id-notes-container">
+                <button popovertarget="id-ncc" id="note-adder" class="button-base">
+                    Add Note
+                </button>
+
+                <p class="suggested-text">
+                    Start adding notes! Click the add button to begin
+                </p>
+
+                <div popover="manual" class="note-creator-container" id="id-ncc">
+                    <div id="note-create-details">
+                        <input placeholder="Insert Note name" id='note-create-title' class="input-field">
+
+                        <textarea id="note-create-content" rows="14" cols="25"></textarea>
+                    </div>
+
+                    <div class="nav-container">
+                        <button class="button-base" id="notes-create-ab">
+                            Add
+                        </button>
+
+                        <button class="button-base" id="notes-create-cb">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+                
+                <div popover="manual" class="note-container" id="id-nc">
+                    <div id="note-details">
+                        <h2 id="note-title">Note Title</h2>
+
+                        <textarea id="note-content" rows="14" cols="25"></textarea>
+                    </div>
+
+                    <div class="nav-container">
+                        <button class="button-base" id="notes-sb">
+                            Save
+                        </button>
+
+                        <button class="button-base" id="notes-cb">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </body>
 </html>
