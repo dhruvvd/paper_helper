@@ -188,8 +188,8 @@ repaperPage.addEventListener('click', async (event) => {
 
         const paper = paperCollection.find(p => p.id == paperID);
 
-        paperTitleEle.value = paper ? paper.title : '';
-        paperAOIEle.value = paper ? paper.author + ", " + paper.other : '';
+        paperTitleEle.textContent = paper ? paper.title : '';
+        paperAOIEle.textContent = paper ? paper.author + ", " + paper.other : '';
         
         modal.show();
     }
@@ -215,8 +215,8 @@ notesPage.addEventListener('click', async (event) => {
         const noteContentEle = document.getElementById('note-content');
 
         if (note) {
-            noteNameEle.value = note.name;
-            noteContentEle.value = note.content + note.name;
+            noteNameEle.textContent = note.name;
+            noteContentEle.value = note.content;
         }
         
         notePopover.showPopover();
