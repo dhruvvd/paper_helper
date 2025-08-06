@@ -217,7 +217,7 @@ notesPage.addEventListener('click', async (event) => {
         if (note) {
             noteNameEle.textContent = note.name;
             noteContentEle.value = note.content;
-        }
+        };
         
         notePopover.showPopover();
     }
