@@ -3,12 +3,12 @@
   "name": "RePaper Extension",
   "version": "1.0.0",
   "description": "a browser extension helping people organize the way they read research papers",
-  "content_scripts": [
-    {
-        "matches": [""],
-        "js": ["content.js"]
-    }
-  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "content.js"
+  },
   "permissions": [
     "storage"
   ]
