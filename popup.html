@@ -168,17 +168,31 @@
             </p>
 
             <div popover="manual" class="note-creator-container" id="id-ncc">
+                <div id="note-create-details">
+                    <input placeholder="Insert Note name" id='note-create-title' class="input-field">
+
+                    <textarea id="note-create-content" rows="14" cols="25"></textarea>
+                </div>
+
+                <div class="nav-container">
+                    <button class="button-base" id="notes-create-ab">
+                        Add
+                    </button>
+
+                    <button class="button-base" id="notes-create-cb">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+            
+            <div popover="manual" class="note-container" id="id-nc">
                 <div id="note-details">
-                    <input placeholder="Insert Note name" id='note-title' class="input-field">
+                    <h2 id="note-title">Note Title</h2>
 
                     <textarea id="note-content" rows="14" cols="25"></textarea>
                 </div>
 
                 <div class="nav-container">
-                    <button class="button-base" id="notes-ab">
-                        Add
-                    </button>
-
                     <button class="button-base" id="notes-sb">
                         Save
                     </button>
@@ -188,6 +202,7 @@
                     </button>
                 </div>
             </div>
+
         </div>
     </div>
 
