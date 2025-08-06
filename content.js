@@ -229,7 +229,7 @@ saveNoteBtn.addEventListener('click', async () => {
     const noteNameEle = document.getElementById('note-title');  
     const noteContentEle = document.getElementById('note-content');
 
-    const noteName = noteNameEle ? noteNameEle.value : '';
+    const noteName = noteNameEle ? noteNameEle.textContent : '';
     const noteContent = noteContentEle ? noteContentEle.value : '';
 
     const result = await chrome.storage.local.get('notes');
@@ -239,12 +239,7 @@ saveNoteBtn.addEventListener('click', async () => {
 
     if (note) {
         note.content = noteContent;
-
-        try {
-            await chrome.storage.local.set({ notes: noteCollection });
-        } catch (error) {
-            console.error("Failed to save note:", error);
-        }
+        await chrome.storage.local.set({ notes: noteCollection });
     };
 
     notePopover.hidePopover();
@@ -402,7 +397,7 @@ fpSaveBtn.addEventListener('click', async () => {
     const fpContentEle = document.getElementById('fp-content');
     const fpContent = fpContentEle ? fpContentEle.value : '';
 
-    const paperTitle = document.getElementById('paperTitle').value;
+    const paperTitle = document.getElementById('paperTitle').textContent;
 
     async function saveFpContent(passContent, paperName) {
         const result = await chrome.storage.local.get('papers');
@@ -430,7 +425,7 @@ spSaveBtn.addEventListener('click', async () => {
     const spContentEle = document.getElementById('sp-content');
     const spContent = spContentEle ? spContentEle.value : ''; 
 
-    const paperTitle = document.getElementById('paperTitle').value;
+    const paperTitle = document.getElementById('paperTitle').textContent   ;
 
     async function saveSpContent(passContent, paperName) {
         const result = await chrome.storage.local.get('papers');
@@ -458,7 +453,7 @@ tpSaveBtn.addEventListener('click', async () => {
     const tpContentEle = document.getElementById('tp-content');
     const tpContent = tpContentEle ? tpContentEle.value : '';
 
-    const paperTitle = document.getElementById('paperTitle').value;
+    const paperTitle = document.getElementById('paperTitle').textContent;
 
     async function saveTpContent(passContent, paperName) {
         const result = await chrome.storage.local.get('papers');
