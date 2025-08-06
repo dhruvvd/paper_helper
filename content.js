@@ -244,6 +244,8 @@ saveNoteBtn.addEventListener('click', async () => {
             console.error("Failed to save note:", error);
         }
     };
+
+    notePopover.hidePopover();
 });
 
 notesPage.addEventListener('click', async (event) => {
