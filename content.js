@@ -127,6 +127,8 @@ addPaperBtn.addEventListener('click', async () => {
     if (titleE) titleE.value = '';
     if (authorE) authorE.value = '';
     if (otherInfoE) otherInfoE.value = '';
+
+    paperPopover.hidePopover();
 });
 
 repaperPage.addEventListener('click', async (event) => {
@@ -342,6 +344,8 @@ addNoteBtn.addEventListener('click', async () => {
 
     if (noteName) noteName.value = '';
     if (noteContent) noteContent.value = '';
+
+    noteCreatePopover.hidePopover();
 });
 
 const fpSaveBtn = document.getElementById('fp-sb');
