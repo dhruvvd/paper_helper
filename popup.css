@@ -42,6 +42,11 @@
     height: 400px;
 }
 
+.scroll-obj {
+    overflow: auto;
+    white-space: nowrap;
+}
+
 dialog:open {
     display: flex;
     flex-direction: column;
@@ -89,7 +94,6 @@ dialog:open {
     border-radius: 4px;
     border: 2px solid #000000;
     width: 400px;
-    height: px;
 }
 
 .suggested-text {
@@ -121,39 +125,21 @@ dialog:open {
     box-shadow: 1px 1px #000000;
 }
 
-#papers-button {
+#papers-button, #notes-button {
     background-color: #A2AADB;
 }
 
-#notes-button {
-    background-color: #A2AADB;
-}
-
-#paper-adder {
+#paper-adder, #note-adder, #pass-submit {
     background-color: #ff6d4d;
 }
 
-#note-adder {
-    background-color: #ff6d4d;
-}
-
-#pass-submit {
-    background-color: #ff6d4d;
-}
-
-#paper-ab {
-    background-color:#6B93B8;
-}
-
-#paper-cb {
-    background-color: #C0C0C0;
-}
-
-#notes-create-ab, #notes-sb {
+#notes-create-ab, #notes-sb, #paper-ab, 
+#fp-sb, #sp-sb, #tp-sb {
     background-color: #6B93B8;
 }
 
-#notes-create-cb {
+#notes-create-cb, #notes-cb, #paper-cb,
+#fp-cb, #sp-cb, #tp-cb {
     background-color: #C0C0C0;
 }
 
@@ -228,6 +214,11 @@ dialog:open {
     border-radius: 4px;
     border: 2px solid #000000;
     cursor: pointer;
+}
+
+#note-create-details {
+    display: flex;
+    flex-direction: column;
 }
 
 .trash-auth-container {
