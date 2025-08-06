@@ -308,7 +308,7 @@ addNoteBtn.addEventListener('click', async () => {
     }
 
     try {
-         saveNote(note);
+        await saveNote(note);
     } catch (error) {
         console.error("Failed to save note:", error);
     }
