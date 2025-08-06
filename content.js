@@ -14,19 +14,25 @@ notesBtn.addEventListener('click', () => {
 });
 
 const cancelPaperBtn = document.getElementById('paper-cb');
+const cancelNoteCreateBtn = document.getElementById('notes-create-cb');
 const cancelNoteBtn = document.getElementById('notes-cb');
 const closeFp = document.getElementById('fp-cb');
 const closeSp = document.getElementById('sp-cb');
 const closeTp = document.getElementById('tp-cb');
 
 const paperPopover = document.getElementById('id-pcc');
-const notePopover = document.getElementById('id-ncc');
+const noteCreatePopover = document.getElementById('id-ncc');
+const notePopover = document.getElementById('id-nc');
 const fpPopover = document.getElementById('fp-details');
 const spPopover = document.getElementById('sp-details');
 const tpPopover = document.getElementById('tp-details');
 
 cancelPaperBtn.addEventListener('click', () => {
     paperPopover.hidePopover();
+});
+
+cancelNoteCreateBtn.addEventListener('click', () => {
+    noteCreatePopover.hidePopover();
 });
 
 cancelNoteBtn.addEventListener('click', () => {
@@ -224,7 +230,13 @@ saveNoteBtn.addEventListener('click', async () => {
     const result = await chrome.storage.local.get('notes');
     const noteCollection = result.notes || [];
 
-    
+    const note = noteCollection.find(n => n.name === noteName);
+
+    if (note) {
+        note.content = noteContent;
+
+        await chrome.storage.local.set({ notes: noteCollection });
+    };
 });
 
 notesPage.addEventListener('click', (event) => {
@@ -263,11 +275,11 @@ submitPass.addEventListener('click', () => {
     modal.close();
 });
 
-const addNoteBtn = document.getElementById('notes-ab');
+const addNoteBtn = document.getElementById('notes-create-ab');
 
 addNoteBtn.addEventListener('click', async () => {
-    const noteName = document.getElementById('note-title');
-    const noteContent = document.getElementById('note-content');
+    const noteName = document.getElementById('note-create-title');
+    const noteContent = document.getElementById('note-create-content');
 
     const name = noteName ? noteName.value: '';
     const content = noteContent ? noteContent.value: '';
@@ -289,7 +301,7 @@ addNoteBtn.addEventListener('click', async () => {
         await chrome.storage.local.set({ notes: noteCollection});
     }
 
-    await savePaper();
+    await saveNote();
     */
 
     const noteDiv = document.createElement('div');
@@ -318,39 +330,7 @@ addNoteBtn.addEventListener('click', async () => {
 
     if (noteName) noteName.value = '';
     if (noteContent) noteContent.value = '';
-})
-
-notesPage.addEventListener('click', async (event) => {
-    const clickedElement = event.target;
-    const elementID = clickedElement.id;
-    const identifier = elementID.substring(0, 5);
-
-    if (identifier === 'trash') {
-        const trashID = elementID;
-        const trashNum = Number(trashID.substring(9));
-        /*
-        async function deleteNote() {
-            try {
-                const result = await chrome.storage.local.get('notes');
-                const pnoteCollection = result.notes || [];
-
-                const updatedNotes = noteCollection.filter(note => note.id !== trashNum);
-                await chrome.storage.local.set({ notes: updatedNotes});
-            } catch (error) {
-                throw error;
-            };
-        }
-        */
-        const container = document.getElementById('id-notes-container');
-        const noteContainer = document.getElementById(trashNum);
-        try {
-            //await deleteNote();
-            container.removeChild(noteContainer);
-        } catch (error) {
-            console.error("Failed to complete note deletion:", error);
-        };
-    };
-})
+});
 
 const fpSaveBtn = document.getElementById('fp-sb');
 const spSaveBtn = document.getElementById('sp-sb');
