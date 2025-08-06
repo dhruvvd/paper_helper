@@ -417,7 +417,7 @@ fpSaveBtn.addEventListener('click', async () => {
         console.error("Failed to save first pass content:", error);
     }
 
-    fpPopover.closePopover();
+    fpPopover.hidePopover();
 });
 
 spSaveBtn.addEventListener('click', async () => {
@@ -445,7 +445,7 @@ spSaveBtn.addEventListener('click', async () => {
         console.error("Failed to save second pass content:", error);
     }
 
-    spPopover.closePopover();
+    spPopover.hidePopover();
 });
 
 tpSaveBtn.addEventListener('click', async () => {
@@ -473,5 +473,5 @@ tpSaveBtn.addEventListener('click', async () => {
         console.error("Failed to save third pass content:", error);
     }
 
-    tpPopover.closePopover();
+    tpPopover.hidePopover();
 });
