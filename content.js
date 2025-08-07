@@ -99,7 +99,7 @@ addPaperBtn.addEventListener('click', async () => {
     const bottomCont = document.createElement('div');
     const rePaperTitle = document.createElement('h1');
     const rePaperAuthor = document.createElement('h3');
-    const trash = document.createElement('i');
+    const trash = document.createElement('img');
 
     const popOverBtn = document.getElementById('paper-adder');
     const container = document.getElementById('id-paper-container');
@@ -112,10 +112,9 @@ addPaperBtn.addEventListener('click', async () => {
     rePaperTitle.setAttribute('id', 'repaperTitle-' + paper.id);
     bottomCont.classList.add('trash-auth-container');
     bottomCont.setAttribute('id', 'trash-auco-id-' + paper.id);
-    trash.classList.add('fa-solid');
-    trash.classList.add('fa-trash');
-    trash.classList.add('fa-2xl');
+    trash.classList.add('trash-icon');
     trash.setAttribute("id", "id-trash-" + paper.id);
+    trash.setAttribute("src", "images/trash-solid-full.svg");
 
     rePaperDiv.appendChild(rePaperTitle);
     bottomCont.appendChild(rePaperAuthor);
@@ -322,7 +321,7 @@ addNoteBtn.addEventListener('click', async () => {
     const noteDiv = document.createElement('div');
     const noteNameEle = document.createElement('h1');
     const trashCont = document.createElement('div');
-    const trash = document.createElement('i');
+    const trash = document.createElement('img');
 
     const popOverBtn = document.getElementById('note-adder');
     const container = document.getElementById('id-notes-container');
@@ -332,10 +331,9 @@ addNoteBtn.addEventListener('click', async () => {
     noteDiv.classList.add('no-container');
     noteDiv.setAttribute("id", "no-id-" + note.id);
     trashCont.classList.add('trash-note-container');
-    trash.classList.add('fa-solid');
-    trash.classList.add('fa-trash');
-    trash.classList.add('fa-2xl');
+    trash.classList.add('trash-icon');
     trash.setAttribute("id", "trash-id-" + note.id);
+    trash.setAttribute("src", "images/trash-solid-full.svg");
 
     noteDiv.appendChild(noteNameEle);
     noteDiv.appendChild(trashCont);
