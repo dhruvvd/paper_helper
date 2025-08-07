@@ -232,15 +232,24 @@ saveNoteBtn.addEventListener('click', async () => {
     const noteName = noteNameEle ? noteNameEle.textContent : '';
     const noteContent = noteContentEle ? noteContentEle.value : '';
 
-    const result = await chrome.storage.local.get('notes');
-    const noteCollection = result.notes || [];
+    async function saveNote (noteName, noteContent) {
+        const result = await chrome.storage.local.get('notes');
+        const noteCollection = result.notes || [];
 
-    const note = noteCollection.find(n => n.name === noteName);
+        const noteObject  = noteCollection.find(n => n.name === noteName);
+        if (noteObject) {
+            noteObject.content = noteContent;
+            await chrome.storage.local.set({ notes: noteCollection });
+        } else {
+            console.error("Note not found for saving content.");
+        }
+    }
 
-    if (note) {
-        note.content = noteContent;
-        await chrome.storage.local.set({ notes: noteCollection });
-    };
+    try {
+        await saveNote(noteName, noteContent);
+    } catch (error) {
+        console.error("Failed to save note content:", error);
+    }
 
     notePopover.hidePopover();
 });
