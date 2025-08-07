@@ -235,12 +235,13 @@ dialog:open {
     margin-right: 7px;
 }
 
-.fa-trash {
-    color: #000000;
+.trash-icon {
+    height: 25px;
+    width: 25px;
 }
 
-.fa-trash:hover {
-    color: #ff3131;
+.trash-icon:hover {
+    filter: invert(37%) sepia(92%) saturate(5301%) hue-rotate(345deg) brightness(108%) contrast(103%);
 }
 
 .input-field {
