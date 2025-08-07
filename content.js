@@ -203,20 +203,17 @@ notesPage.addEventListener('click', async (event) => {
     if (identifier === "no-id") {
         const noteID = Number(elementID.substring(6));
         
-        async function getNote(noteVal) {
-            const result = await chrome.storage.local.get('notes');
-            const noteCollection = result.notes || [];
+        const result = await chrome.storage.local.get('notes');
+        const noteCollection = result.notes || [];
 
-            return noteCollection.find(n => n.id === noteVal);
-        }
+        const note = noteCollection.find(n => n.id === noteID);
 
-        const note = await getNote(noteID);
         const noteNameEle = document.getElementById('note-title');
         const noteContentEle = document.getElementById('note-content');
 
         if (note) {
-            noteNameEle.textContent = note.name;
-            noteContentEle.value = note.content;
+            noteNameEle.textContent = note.name || '';
+            noteContentEle.value = note.content || '';
         };
         
         notePopover.showPopover();
