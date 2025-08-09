@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "RePaper Extension",
+  "name": "Scholar Stack",
   "version": "1.0.0",
   "description": "a browser extension helping people organize the way they read research papers",
   "action": {
