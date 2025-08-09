@@ -359,7 +359,7 @@ fpObject.addEventListener('click', async () => {
     const result = await chrome.storage.local.get('papers');
     const paperCollection = result.papers || [];
 
-    const paperTitle = document.getElementById('paperTitle').value;
+    const paperTitle = document.getElementById('paperTitle').textContent;
     const paper = paperCollection.find(p => p.title === paperTitle);   
 
     const fpContentEle = document.getElementById('fp-content');
@@ -373,7 +373,7 @@ spObject.addEventListener('click', async () => {
     const result = await chrome.storage.local.get('papers');
     const paperCollection = result.papers || [];
 
-    const paperTitle = document.getElementById('paperTitle').value;
+    const paperTitle = document.getElementById('paperTitle').textContent;
     const paper = paperCollection.find(p => p.title === paperTitle);   
 
     const spContentEle = document.getElementById('sp-content');
@@ -387,7 +387,7 @@ tpObject.addEventListener('click', async () => {
     const result = await chrome.storage.local.get('papers');
     const paperCollection = result.papers || [];
 
-    const paperTitle = document.getElementById('paperTitle').value; 
+    const paperTitle = document.getElementById('paperTitle').textContent; 
     const paper = paperCollection.find(p => p.title === paperTitle);    
 
     const tpContentEle = document.getElementById('tp-content');
