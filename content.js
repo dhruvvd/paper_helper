@@ -483,8 +483,11 @@ tpSaveBtn.addEventListener('click', async () => {
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const repaperPage = document.getElementById('id-paper-container');
-    const notesPage = document.getElementById('id-notes-container');
+    const paperContainer = document.getElementById('id-paper-container');
+    const noteContainer = document.getElementById('id-notes-container');
+
+    const paperAddBtn = document.getElementById('paper-adder');
+    const noteAddBtn = document.getElementById('note-adder');
 
     const resultPaper = await chrome.storage.local.get('papers');
     const paperCollection = resultPaper.papers || [];
@@ -518,7 +521,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 bottomCont.appendChild(trash);
                 rePaperDiv.appendChild(bottomCont);
 
-                repaperPage.appendChild(rePaperDiv);
+                paperContainer.insertBefore(rePaperDiv, paperAddBtn);
             });
         }
     } catch (error) {
@@ -546,7 +549,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 noteDiv.appendChild(trashCont);
                 trashCont.appendChild(trash);
 
-                notesPage.appendChild(noteDiv);
+                noteContainer.insertBefore(noteDiv, noteAddBtn);
             });
         }
     } catch (error) {
