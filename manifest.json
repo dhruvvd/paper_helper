@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Scholar Stack",
   "version": "1.0.0",
-  "description": "a browser extension helping people organize the way they read research papers",
+  "description": "Keep track of your research papers, jot down notes, and organize your academic reading — all in one place.",
   "action": {
     "default_popup": "popup.html"
   },
