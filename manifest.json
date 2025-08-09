@@ -8,5 +8,10 @@
   },
   "permissions": [
     "storage"
-  ]
+  ],
+  "icons": {
+    "16": "images/scholarstack.png",
+    "48": "images/scholarstack.png",
+    "128": "images/scholarstack.png"
+  }
 }
