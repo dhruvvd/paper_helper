@@ -480,3 +480,76 @@ tpSaveBtn.addEventListener('click', async () => {
 
     tpPopover.hidePopover();
 });
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const repaperPage = document.getElementById('id-paper-container');
+    const notesPage = document.getElementById('id-notes-container');
+
+    const resultPaper = await chrome.storage.local.get('papers');
+    const paperCollection = resultPaper.papers || [];
+
+    const resultNote = await chrome.storage.local.get('notes');
+    const noteCollection = resultNote.notes || [];
+
+    try {
+        if (paperCollection) {
+            paperCollection.forEach(paper => {
+                const rePaperDiv = document.createElement('div');
+                const bottomCont = document.createElement('div');
+                const rePaperTitle = document.createElement('h1');
+                const rePaperAuthor = document.createElement('h3');
+                const trash = document.createElement('img');
+
+                rePaperTitle.textContent = paper.title;
+                rePaperAuthor.textContent = paper.author;
+
+                rePaperDiv.classList.add('po-container');
+                rePaperDiv.setAttribute("id", "po-id-" + paper.id);
+                rePaperTitle.setAttribute('id', 'repaperTitle-' + paper.id);
+                bottomCont.classList.add('trash-auth-container');
+                bottomCont.setAttribute('id', 'trash-auco-id-' + paper.id);
+                trash.classList.add('trash-icon');
+                trash.setAttribute("id", "id-trash-" + paper.id);
+                trash.setAttribute("src", "images/trash-solid-full.svg");
+
+                rePaperDiv.appendChild(rePaperTitle);
+                bottomCont.appendChild(rePaperAuthor);
+                bottomCont.appendChild(trash);
+                rePaperDiv.appendChild(bottomCont);
+
+                repaperPage.appendChild(rePaperDiv);
+            });
+        }
+    } catch (error) {
+        console.error("Failed to load papers:", error);
+    }
+
+    try {
+        if (noteCollection) {
+            noteCollection.forEach(note => {
+                const noteDiv = document.createElement('div');
+                const noteNameEle = document.createElement('h1');
+                const trashCont = document.createElement('div');
+                const trash = document.createElement('img');
+
+                noteNameEle.textContent = note.name;
+
+                noteDiv.classList.add('no-container');
+                noteDiv.setAttribute("id", "no-id-" + note.id);
+                trashCont.classList.add('trash-note-container');
+                trash.classList.add('trash-icon');
+                trash.setAttribute("id", "trash-id-" + note.id);
+                trash.setAttribute("src", "images/trash-solid-full.svg");
+
+                noteDiv.appendChild(noteNameEle);
+                noteDiv.appendChild(trashCont);
+                trashCont.appendChild(trash);
+
+                notesPage.appendChild(noteDiv);
+            });
+        }
+    } catch (error) {
+        console.error("Failed to load notes:", error);
+    }
+});
