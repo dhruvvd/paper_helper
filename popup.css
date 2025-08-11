@@ -271,7 +271,7 @@ h2 {
     margin: 10px;
 }
 
-.paper-author {
+.length-hide {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
