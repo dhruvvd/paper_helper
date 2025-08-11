@@ -110,6 +110,7 @@ addPaperBtn.addEventListener('click', async () => {
     rePaperDiv.classList.add('po-container');
     rePaperDiv.setAttribute("id", "po-id-" + paper.id);
     rePaperTitle.setAttribute('id', 'repaperTitle-' + paper.id);
+    rePaperAuthor.classList.add('paper-author');
     bottomCont.classList.add('trash-auth-container');
     bottomCont.setAttribute('id', 'trash-auco-id-' + paper.id);
     trash.classList.add('trash-icon');
