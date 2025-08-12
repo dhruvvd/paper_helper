@@ -332,6 +332,7 @@ addNoteBtn.addEventListener('click', async () => {
 
     noteDiv.classList.add('no-container');
     noteDiv.setAttribute("id", "no-id-" + note.id);
+    noteNameEle.classList.add('length-hide');
     trashCont.classList.add('trash-note-container');
     trash.classList.add('trash-icon');
     trash.setAttribute("id", "trash-id-" + note.id);
@@ -512,6 +513,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 rePaperDiv.classList.add('po-container');
                 rePaperDiv.setAttribute("id", "po-id-" + paper.id);
                 rePaperTitle.setAttribute('id', 'repaperTitle-' + paper.id);
+                rePaperTitle.classList.add('length-hide');
+                rePaperAuthor.classList.add('length-hide');
                 bottomCont.classList.add('trash-auth-container');
                 bottomCont.setAttribute('id', 'trash-auco-id-' + paper.id);
                 trash.classList.add('trash-icon');
@@ -542,6 +545,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 noteDiv.classList.add('no-container');
                 noteDiv.setAttribute("id", "no-id-" + note.id);
+                noteNameEle.classList.add('length-hide');
                 trashCont.classList.add('trash-note-container');
                 trash.classList.add('trash-icon');
                 trash.setAttribute("id", "trash-id-" + note.id);
